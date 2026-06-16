@@ -1,0 +1,26 @@
+name: build-tauri-linux
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: |
+          sudo apt update
+          sudo apt install -y libwebkit2gtk-4.0-dev libgtk-3-dev libappindicator3-dev librsvg2-dev build-essential curl wget file libssl-dev
+
+      - run: npm install
+
+      - run: npm run tauri build
