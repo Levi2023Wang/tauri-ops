@@ -6,13 +6,13 @@ fn start_nginx() -> String {
 
     let result = Command::new("systemctl")
 
-        .args(["start", "nginx"])
+        .args(["start", "hdnginx"])
 
         .output();
 
     match result {
 
-        Ok(_) => "nginx 启动成功".into(),
+        Ok(_) => "hdnginx 启动成功".into(),
 
         Err(e) => format!("失败: {}", e),
 
